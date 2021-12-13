@@ -1,12 +1,14 @@
-package psyh2409;
+package com.psyh2409;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+    static Random random = new Random();
     public static void main(String[] args) {
         percentCalc();
-        arrReverter(10);
+        arrReverter(5);
         twoDimensionalArray(5, 7);
 
         scanner.close();
@@ -28,11 +30,14 @@ public class Main {
         int[] arr = new int[len];
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < len; i++) {
-            arr[i] = (int) doubler(inputer("Enter some integer: "));
-            sb. append(i == 0 ? arr[i] : ","+arr[i]);
+            arr[i] = inter(inputer("Enter some integer: "));
+            sb.append(i == 0 ? arr[i] : ", "+arr[i]);
         }
         pln(sb);
-        pln(sb.reverse());
+        for (int i = len-1;  i >= 0; i--) {
+            p(i == len-1 ? arr[i] : ", "+arr[i]);
+        }
+        pln("");
     }
 
 
@@ -50,8 +55,15 @@ public class Main {
         try {
             return Double.parseDouble(s);
         } catch (NumberFormatException nfe) {
-            int i = (int) (Math.random()*10000);
-            return (double)i/100;
+            return random.nextDouble();
+        }
+    }
+
+    private static int inter(String s){
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException nfe) {
+            return random.nextInt();
         }
     }
 
